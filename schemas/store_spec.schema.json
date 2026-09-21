@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoboost.local/schemas/store-spec.schema.json",
+  "title": "Echoboost StoreSpec",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","store","branding","navigation","homepage","catalog","pages","footer","commerce","seo","social","policies","responsive"],
+  "properties": {
+    "schema_version": {"const":"1.0.0"},
+    "store": {"$ref":"#/$defs/store"},
+    "branding": {"$ref":"#/$defs/branding"},
+    "navigation": {"$ref":"#/$defs/navigation"},
+    "homepage": {"$ref":"#/$defs/homepage"},
+    "catalog": {"$ref":"#/$defs/catalog"},
+    "pages": {"$ref":"#/$defs/pages"},
+    "footer": {"$ref":"#/$defs/footer"},
+    "commerce": {"$ref":"#/$defs/commerce"},
+    "seo": {"$ref":"#/$defs/seo"},
+    "social": {"$ref":"#/$defs/social"},
+    "policies": {"$ref":"#/$defs/policies"},
+    "responsive": {"$ref":"#/$defs/responsive"}
+  },
+  "$defs": {
+    "store": {"type":"object","additionalProperties":false,"required":["name","description","industry","target_audience","locale","currency"],"properties":{
+      "name":{"type":"string"},"description":{"type":"string"},"industry":{"type":"string"},"target_audience":{"type":"string"},"locale":{"type":"string"},"currency":{"type":"string","minLength":3,"maxLength":3}
+    }},
+    "colors": {"type":"object","additionalProperties":false,"required":["primary","secondary","accent","background","surface","text","muted_text"],"properties":{
+      "primary":{"type":"string"},"secondary":{"type":"string"},"accent":{"type":"string"},"background":{"type":"string"},"surface":{"type":"string"},"text":{"type":"string"},"muted_text":{"type":"string"}
+    }},
+    "branding": {"type":"object","additionalProperties":false,"required":["style","colors","typography","imagery"],"properties":{
+      "style":{"type":"string"},"colors":{"$ref":"#/$defs/colors"},"typography":{"type":"object","additionalProperties":false,"required":["heading","body","scale"],"properties":{"heading":{"type":"string"},"body":{"type":"string"},"scale":{"type":"string"}}},
+      "imagery":{"type":"object","additionalProperties":false,"required":["direction","product_image_style","use_lifestyle_images"],"properties":{"direction":{"type":"string"},"product_image_style":{"type":"string"},"use_lifestyle_images":{"type":"boolean"}}}
+    }},
+    "nav_item":{"type":"object","additionalProperties":false,"required":["label","href","visible"],"properties":{"label":{"type":"string"},"href":{"type":"string"},"visible":{"type":"boolean"}}},
+    "navigation":{"type":"object","additionalProperties":false,"required":["items","mobile_behavior","show_search","show_cart","show_account"],"properties":{
+      "items":{"type":"array","items":{"$ref":"#/$defs/nav_item"}},"mobile_behavior":{"type":"string"},"show_search":{"type":"boolean"},"show_cart":{"type":"boolean"},"show_account":{"type":"boolean"}
+    }},
+    "cta":{"type":"object","additionalProperties":false,"required":["label","action"],"properties":{"label":{"type":"string"},"action":{"type":"string"}}},
+    "hero":{"type":"object","additionalProperties":false,"required":["headline","subheadline","primary_cta","secondary_cta","image_direction","alignment"],"properties":{
+      "headline":{"type":"string"},"subheadline":{"type":"string"},"primary_cta":{"$ref":"#/$defs/cta"},"secondary_cta":{"$ref":"#/$defs/cta"},"image_direction":{"type":"string"},"alignment":{"type":"string"}
+    }},
+    "section":{"type":"object","additionalProperties":false,"required":["id","type","title","description","enabled","variant"],"properties":{
+      "id":{"type":"string"},"type":{"type":"string","enum":["featured_products","categories","product_grid","promo_banner","benefits","testimonials","faq","newsletter","about","brand_story","image_text","announcement","custom_content"]},"title":{"type":"string"},"description":{"type":"string"},"enabled":{"type":"boolean"},"variant":{"type":"string"}
+    }},
+    "homepage":{"type":"object","additionalProperties":false,"required":["layout_variant","hero","sections"],"properties":{"layout_variant":{"type":"string"},"hero":{"$ref":"#/$defs/hero"},"sections":{"type":"array","items":{"$ref":"#/$defs/section"}}}},
+    "category":{"type":"object","additionalProperties":false,"required":["name","slug","description","enabled"],"properties":{"name":{"type":"string"},"slug":{"type":"string"},"description":{"type":"string"},"enabled":{"type":"boolean"}}},
+    "catalog":{"type":"object","additionalProperties":false,"required":["categories","product_card","sorting","filters","catalog_layout"],"properties":{
+      "categories":{"type":"array","items":{"$ref":"#/$defs/category"}},
+      "product_card":{"type":"object","additionalProperties":false,"required":["show_image","show_badge","show_rating","show_price","show_compare","show_quick_view","show_add_to_cart","image_ratio","hover_behavior"],"properties":{"show_image":{"type":"boolean"},"show_badge":{"type":"boolean"},"show_rating":{"type":"boolean"},"show_price":{"type":"boolean"},"show_compare":{"type":"boolean"},"show_quick_view":{"type":"boolean"},"show_add_to_cart":{"type":"boolean"},"image_ratio":{"type":"string"},"hover_behavior":{"type":"string"}}},
+      "sorting":{"type":"array","items":{"type":"string"}},"filters":{"type":"array","items":{"type":"string"}},"catalog_layout":{"type":"string"}
+    }},
+    "page":{"type":"object","additionalProperties":false,"required":["enabled","title","content_direction"],"properties":{"enabled":{"type":"boolean"},"title":{"type":"string"},"content_direction":{"type":"string"}}},
+    "pages":{"type":"object","additionalProperties":false,"required":["about","contact","faq","shipping"],"properties":{"about":{"$ref":"#/$defs/page"},"contact":{"$ref":"#/$defs/page"},"faq":{"$ref":"#/$defs/page"},"shipping":{"$ref":"#/$defs/page"}}},
+    "footer":{"type":"object","additionalProperties":false,"required":["layout_variant","columns","show_newsletter","show_social","show_payment_methods","copyright_text"],"properties":{"layout_variant":{"type":"string"},"columns":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["title","links"],"properties":{"title":{"type":"string"},"links":{"type":"array","items":{"type":"string"}}}}},"show_newsletter":{"type":"boolean"},"show_social":{"type":"boolean"},"show_payment_methods":{"type":"boolean"},"copyright_text":{"type":"string"}}},
+    "commerce":{"type":"object","additionalProperties":false,"required":["checkout_mode","guest_checkout","account_required","currency","shipping","payments"],"properties":{
+      "checkout_mode":{"type":"string"},"guest_checkout":{"type":"boolean"},"account_required":{"type":"boolean"},"currency":{"type":"string","minLength":3,"maxLength":3},
+      "shipping":{"type":"object","additionalProperties":false,"required":["enabled","information","zones"],"properties":{"enabled":{"type":"boolean"},"information":{"type":"string"},"zones":{"type":"array","items":{"type":"string"}}}},
+      "payments":{"type":"object","additionalProperties":false,"required":["enabled","methods"],"properties":{"enabled":{"type":"boolean"},"methods":{"type":"array","items":{"type":"string"}}}}
+    }},
+    "seo":{"type":"object","additionalProperties":false,"required":["title","description","keywords","og_image_direction"],"properties":{"title":{"type":"string"},"description":{"type":"string"},"keywords":{"type":"array","items":{"type":"string"}},"og_image_direction":{"type":"string"}}},
+    "social":{"type":"object","additionalProperties":false,"required":["enabled","links"],"properties":{"enabled":{"type":"boolean"},"links":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["platform","url"],"properties":{"platform":{"type":"string"},"url":{"type":"string"}}}}}},
+    "policies":{"type":"object","additionalProperties":false,"required":["returns","privacy","terms","cancellation"],"properties":{"returns":{"type":"string"},"privacy":{"type":"string"},"terms":{"type":"string"},"cancellation":{"type":"string"}}},
+    "responsive":{"type":"object","additionalProperties":false,"required":["mobile_first","breakpoints","behavior"],"properties":{"mobile_first":{"type":"boolean"},"breakpoints":{"type":"array","items":{"type":"string"}},"behavior":{"type":"array","items":{"type":"string"}}}}
+  }
+}

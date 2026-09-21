@@ -1,0 +1,7 @@
+torch>=2.4
+transformers>=4.51
+accelerate>=1.2
+safetensors>=0.4
+jsonschema>=4.23
+python-dotenv>=1.0
+pytest>=8.0

@@ -1,0 +1,12 @@
+.env
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+models/*.safetensors
+models/*.bin
+models/*.gguf
+data/generations/
+.idea/
+.vscode/

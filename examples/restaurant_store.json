@@ -1,0 +1,9 @@
+{
+  "business_name": "The Green Bowl",
+  "industry": "restaurant and food delivery",
+  "products": ["healthy bowls", "smoothies", "quick meals"],
+  "target_audience": "students, professionals, and health-conscious customers",
+  "brand_direction": "fresh friendly",
+  "currency": "NGN",
+  "locale": "en-NG"
+}

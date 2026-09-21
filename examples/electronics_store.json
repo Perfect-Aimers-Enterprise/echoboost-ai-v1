@@ -1,0 +1,9 @@
+{
+  "business_name": "TechHub Direct",
+  "industry": "electronics ecommerce",
+  "products": ["smartphones", "phone accessories", "small electronics"],
+  "target_audience": "students and young professionals",
+  "brand_direction": "clean modern",
+  "currency": "NGN",
+  "locale": "en-NG"
+}

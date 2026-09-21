@@ -1,0 +1,9 @@
+{
+  "business_name": "Urban Fits",
+  "industry": "fashion ecommerce",
+  "products": ["men's sneakers", "watches"],
+  "target_audience": "young Nigerian men",
+  "brand_direction": "dark premium",
+  "currency": "NGN",
+  "locale": "en-NG"
+}
