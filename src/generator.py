@@ -15,6 +15,9 @@ class StoreGenerator:
         last_error = None
         for attempt in range(settings.generation_retries + 1):
             raw = self.model.generate(self.system_prompt, merchant_input)
+            print("\n===== RAW MODEL OUTPUT =====\n")
+            print(raw)
+            print("\n===== END RAW MODEL OUTPUT =====\n")
             try:
                 spec = extract_json(raw)
                 validate_store_spec(spec)
