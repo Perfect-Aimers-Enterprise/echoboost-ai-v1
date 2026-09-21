@@ -491,9 +491,9 @@ API_keys
 
 The actual payment providers, shipping providers, prices, and merchant configuration belong to the Echoboost platform/database.
 
-==================================================
+===================================================
 FOOTER RULE
-==================================================
+===================================================
 
 footer MUST contain:
 
